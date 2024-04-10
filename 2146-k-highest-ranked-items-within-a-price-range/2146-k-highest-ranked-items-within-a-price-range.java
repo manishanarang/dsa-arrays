@@ -56,6 +56,7 @@ class Solution {
 
 
       pq.add(new Point(x, y, grid[x][y], distance));
+       visited[x][y]=true;
 
    }
 
@@ -66,7 +67,7 @@ class Solution {
       var visited = new boolean[m][n];
       var pq = new PriorityQueue<Point>(new PointComparator());
       pq.add(new Point(start[0], start[1], grid[start[0]][start[1]], 0));
-
+       visited[start[0]][start[1]] = true;
       var ans = new ArrayList<List<Integer>>();
 
       while (!pq.isEmpty()) {
@@ -75,10 +76,7 @@ class Solution {
          int y = point.y;
          int distance = point.distance;
          int integer = point.integer;
-         if (visited[x][y]) {
-            continue;
-         }
-         visited[x][y] = true;
+         
 
 
          if (pricing[0] <= integer && integer <= pricing[1]) {
