@@ -39,11 +39,10 @@ class Solution {
         }
         
         public int find(int x){
-            int p = parent[x];
-            if(p!=parent[p]){
-                p = find(parent[p]);
+            if(x!=parent[x]){
+                x = find(parent[x]);
             }
-            return p;
+            return x;
         }
         
         public boolean union(int x, int y){
