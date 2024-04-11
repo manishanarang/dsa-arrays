@@ -5,10 +5,10 @@ class Solution {
         Arrays.fill(dp, amount+1);
         dp[0]=0;
 
-        for(int j = 0; j<n;j++){
-            for(int i = 1; i<=amount;i++){
-                if(coins[j]<=i){
-                    dp[i] = Math.min(1 + dp[i-coins[j]], dp[i]);
+        for(int i = 0; i<n;i++){
+            for(int j = 1; j<=amount;j++){
+                if(coins[i]<=j){
+                    dp[j] = Math.min(1 + dp[j-coins[i]], dp[j]);
                 }
             }
         }
