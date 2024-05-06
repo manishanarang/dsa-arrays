@@ -12,9 +12,9 @@ class Solution {
             if((i-left+1) - maxFreq > k){ //invalid window
                 map.put(s.charAt(left), map.get(s.charAt(left))-1);
                 left++;
-            }else{
-            result = Math.max(result, i-left+1);
             }
+            result = Math.max(result, i-left+1);
+            
         }
         return result;        
     }
