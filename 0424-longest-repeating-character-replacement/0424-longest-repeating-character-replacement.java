@@ -9,11 +9,12 @@ class Solution {
             map.put(s.charAt(i), map.getOrDefault(s.charAt(i),0)+1);
             
              maxFreq = Math.max(maxFreq, map.get(s.charAt(i)));
-            while((i-left+1) - maxFreq > k){ //invalid window
+            if((i-left+1) - maxFreq > k){ //invalid window
                 map.put(s.charAt(left), map.get(s.charAt(left))-1);
                 left++;
-            }
+            }else{
             result = Math.max(result, i-left+1);
+            }
         }
         return result;        
     }
