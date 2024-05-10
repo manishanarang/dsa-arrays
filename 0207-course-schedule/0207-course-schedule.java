@@ -29,7 +29,6 @@ class Solution {
       
     if(visited.contains(i)) return false;
       
-    visited.add(i);
     cycle.add(i);
 
     for (Integer child : courseDict.get(i)) {
@@ -37,6 +36,8 @@ class Solution {
         }
     
     cycle.remove(i);
+    visited.add(i);
+
     return false;
 }
 }
