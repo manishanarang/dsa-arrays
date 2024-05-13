@@ -1,21 +1,21 @@
 import java.util.*;
 
 public class Solution {
-    private Map<Integer, Set<Integer>> memo; // Memoization map to store results
+    private Map<Integer, Set<Integer>> memo; 
     
-    private boolean dfs(int i, int j, Map<Integer, List<Integer>> graph, int[] vis) {
-        if (i == j)
+    private boolean dfs(int node, int dest, Map<Integer, List<Integer>> graph, int[] vis) {
+        if (node == dest)
             return true;
         
-        vis[i] = 1;
-        for (int it : graph.get(i)) {
+        vis[node] = 1;
+        for (int it : graph.get(node)) {
             if (vis[it] == 0) {
-                if (dfs(it, j, graph, vis)) {
-                    memo.computeIfAbsent(i, k -> new HashSet<>()).add(j); // Store the result in memoization map
+                if (dfs(it, dest, graph, vis)) {
+                    memo.computeIfAbsent(node, k -> new HashSet<>()).add(it); 
                     return true;
                 }
-            } else if (memo.containsKey(it) && memo.get(it).contains(j)) { // If the result for this pair is memoized
-                memo.computeIfAbsent(i, k -> new HashSet<>()).add(j); // Store the result in memoization map
+            } else if (memo.containsKey(it) && memo.get(it).contains(dest)) { 
+                memo.computeIfAbsent(node, k -> new HashSet<>()).add(it); 
                 return true;
             }
         }
@@ -27,12 +27,13 @@ public class Solution {
         for (int i = 0; i < numCourses; i++) {
             graph.put(i, new ArrayList<>());
         }
-        List<Boolean> ans = new ArrayList<>();
-        memo = new HashMap<>();
         
         for (int[] pre : prerequisites) {
             graph.computeIfAbsent(pre[0], k-> new ArrayList<>()).add(pre[1]);
         }
+        
+        List<Boolean> ans = new ArrayList<>();
+        memo = new HashMap<>();
 
         for (int query[] : queries) {
             int[] vis = new int[numCourses];
