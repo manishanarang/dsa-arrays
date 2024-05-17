@@ -1,5 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 class Solution {
     public String minWindow(String s, String t) {
