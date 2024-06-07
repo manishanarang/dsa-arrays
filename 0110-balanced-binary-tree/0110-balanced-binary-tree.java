@@ -15,18 +15,19 @@
  */
 class Solution {
     public boolean isBalanced(TreeNode root) {
-        return height(root).isBalanced;
+        return util(root).isBalanced;
     }
     
-    public HeightBalanced height(TreeNode root){
+    public HeightBalanced util(TreeNode root){
         if(root==null) return new HeightBalanced(true, 0);
         
-        int lh = height(root.left).height;
-        int rh = height(root.right).height;
+        var left = util(root.left);
+        var right = util(root.right);
         
-        var balanced = Math.abs(lh-rh) <=1 && height(root.left).isBalanced && height(root.right).isBalanced;  
+        var balanced = Math.abs(left.height-right.height) <=1 &&
+                        left.isBalanced && right.isBalanced;  
         
-        return new HeightBalanced(balanced , 1 + Math.max(lh,rh));
+        return new HeightBalanced(balanced , 1 + Math.max(left.height,right.height));
     }
 
     class HeightBalanced{
