@@ -14,30 +14,28 @@
  * }
  */
 class Solution {
+    List<Integer> list = new ArrayList<>();
+    int maxLevel = Integer.MIN_VALUE;
     public List<Integer> rightSideView(TreeNode root) {
-        List<Integer> result = new ArrayList<>();
-        if(root == null) return result;
+        util(root, 0);
+    return list;
+}
 
-        Queue<TreeNode> q = new LinkedList<>();
-        q.add(root);
+public void util(TreeNode root, int level) {
+        if(root==null) return ;
+        
+        if(level > maxLevel){
+            list.add(root.val);
+            maxLevel = level;
 
-        while(!q.isEmpty()){
-            int size = q.size();
-            for(int i = 0; i <size;i++){
-               TreeNode temp = q.poll();
-
-                if(i == (size-1)){
-                    result.add(temp.val);
-                }
-
-                if(temp.left!=null){
-                    q.add(temp.left);
-                }
-                if(temp.right!=null){
-                    q.add(temp.right);
-                }
-            }
         }
-        return result;
+    
+        if(root.right!=null){
+            util(root.right,level + 1);
+        }
+        if(root.left!=null){
+            util(root.left, level + 1);
+        }
+        
     }
 }
