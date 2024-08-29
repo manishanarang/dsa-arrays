@@ -23,26 +23,24 @@ class Node {
 
 class Solution {
     public Node connect(Node root) {
-        Queue<Node> cache = new LinkedList<>();
-      
-        
+        Queue<Node> q = new LinkedList<>();
         if(root!=null)
-            cache.add(root);
-        while(!cache.isEmpty())
+            q.add(root);
+        while(!q.isEmpty())
         {
-            int count = cache.size();
+            int sz = q.size();
             
-            while(count-- > 0)
+            for(int i = 0; i<sz;i++)
             {
-                Node curr = cache.remove();
+                Node temp = q.poll();
                
-                  if(count > 0)
-                    curr.next = cache.peek();  
+                  if(i<sz-1)
+                    temp.next = q.peek();  
                
-                if(curr.left!=null)
-                cache.add(curr.left);
-                if(curr.right!=null)
-                 cache.add(curr.right);
+                if(temp.left!=null)
+                q.add(temp.left);
+                if(temp.right!=null)
+                 q.add(temp.right);
                 
             }
           
@@ -51,4 +49,5 @@ class Solution {
       
         return root;
     }
+    
 }
